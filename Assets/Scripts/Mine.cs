@@ -8,6 +8,8 @@ public class Mine : MonoBehaviour
     public Resource resource;
     private GameManager gameManager;
 
+    [SerializeField]
+    private TMPro.TextMeshPro storedLabel;
     private float nextTick = 0f;
     private AssignableWorker assignableWorker;
     // Start is called before the first frame update
@@ -31,6 +33,7 @@ public class Mine : MonoBehaviour
 
     private void Tick()
     {
+        storedLabel.text = gameManager.GetResourceCount(resource).ToString();
         gameManager.AddResource(resource, 1 * assignableWorker.GetAssignedWorkers());
     }
 

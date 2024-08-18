@@ -6,11 +6,11 @@ using TMPro;
 public enum Resource
 {
     ROCK,
-    SAND,
+    WOOD,
     CLAY,
     BRICK,
     TILE,
-    GLASS,
+    PLANKS,
     HOUSE,
     WORKER,
     TOTAL_WORKER
@@ -23,17 +23,17 @@ public class GameManager : MonoBehaviour
     {
         { Resource.BRICK, 0 },
         { Resource.TILE, 0 },
-        { Resource.GLASS, 0 }
+        { Resource.PLANKS, 0 }
     };
 
     private Dictionary<Resource, int> resources = new Dictionary<Resource, int>()
     {
         { Resource.ROCK, 0 },
-        { Resource.SAND, 0 },
+        { Resource.WOOD, 0 },
         { Resource.CLAY, 0 },
         { Resource.BRICK, 0 },
         { Resource.TILE, 0 },
-        { Resource.GLASS, 0 },
+        { Resource.PLANKS, 0 },
         { Resource.HOUSE, 0 },
         { Resource.WORKER, 0 },
         { Resource.TOTAL_WORKER, 0 }
@@ -78,8 +78,8 @@ public class GameManager : MonoBehaviour
         housingLabel.text = $"{resources[Resource.HOUSE]} Houses\n" +
                             $"{resources[Resource.WORKER]}/{resources[Resource.TOTAL_WORKER]} Workers";
         resourceLabel.text = $"Resources:\n" +
-            $"Storage: Bricks {resources[Resource.BRICK]} | Tiles {resources[Resource.TILE]} | Glass {resources[Resource.GLASS]}\n" +
-            $"Comitted: Bricks {committedResources[Resource.BRICK]} | Tiles {committedResources[Resource.TILE]} | Glass {committedResources[Resource.GLASS]}";
+            $"Storage: Bricks {resources[Resource.BRICK]} | Tiles {resources[Resource.TILE]} | Planks {resources[Resource.PLANKS]}\n" +
+            $"Comitted: Bricks {committedResources[Resource.BRICK]} | Tiles {committedResources[Resource.TILE]} | Planks {committedResources[Resource.PLANKS]}";
     }
 
     public void CommitResources()

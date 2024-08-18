@@ -8,7 +8,7 @@ public class Monument
 {
     public string name;
     public string description;
-    public int brickCost, tileCost, glassCost;
+    public int brickCost, tileCost, plankCost;
     public GameObject worldObject;
 }
 public class MonumentManager : MonoBehaviour
@@ -44,11 +44,11 @@ public class MonumentManager : MonoBehaviour
             Monument monument = monuments[i];
             if(availableResources[Resource.BRICK] >= monument.brickCost &&
                availableResources[Resource.TILE] >= monument.tileCost &&
-               availableResources[Resource.GLASS] >= monument.glassCost )
+               availableResources[Resource.PLANKS] >= monument.plankCost )
             {
                 availableResources[Resource.BRICK] -= monument.brickCost;
                 availableResources[Resource.TILE] -= monument.tileCost;
-                availableResources[Resource.GLASS] -= monument.glassCost;
+                availableResources[Resource.PLANKS] -= monument.plankCost;
                 monument.worldObject.GetComponent<Renderer>().material.color = Color.green;
                 lastMonumentIndex = i;
             } else
@@ -68,7 +68,7 @@ public class MonumentManager : MonoBehaviour
         nextUnlockLabel.text = $"Next Unlock: {monuments[lastMonumentIndex + 1].name} (" +
             $" B: {resourcesForNextUnlock[Resource.BRICK]}/{monuments[lastMonumentIndex + 1].brickCost}" +
             $" T: {resourcesForNextUnlock[Resource.TILE]}/{monuments[lastMonumentIndex + 1].tileCost}" +
-            $" G: {resourcesForNextUnlock[Resource.GLASS]}/{monuments[lastMonumentIndex + 1].glassCost})";
+            $" P: {resourcesForNextUnlock[Resource.PLANKS]}/{monuments[lastMonumentIndex + 1].plankCost})";
 
     }
 }

@@ -77,7 +77,7 @@ public class Tutorial : MonoBehaviour
         {
             if (gameManager.GetResourceCount(Resource.BRICK) >= houseManager.cost[0] &&
                 gameManager.GetResourceCount(Resource.TILE) >= houseManager.cost[1] &&
-                gameManager.GetResourceCount(Resource.GLASS) >= houseManager.cost[2])
+                gameManager.GetResourceCount(Resource.PLANKS) >= houseManager.cost[2])
             {
 
                 tutorialElements[(int)Tutorials.HouseBuilding].worldObject.SetActive(true);

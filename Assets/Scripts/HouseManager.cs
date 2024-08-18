@@ -10,7 +10,7 @@ public class HouseManager : MonoBehaviour
     private int workerPerHouse = 3;
     private GameManager gameManager;
 
-    //House cost: Brick Tile Glass
+    //House cost: Brick Tile Plank
     public int[] cost = new int[3] { 10, 5, 2 };
 
     // Start is called before the first frame update
@@ -42,7 +42,7 @@ public class HouseManager : MonoBehaviour
     {
         if (gameManager.GetResourceCount(Resource.BRICK) < cost[0] ||
             gameManager.GetResourceCount(Resource.TILE) < cost[1] ||
-            gameManager.GetResourceCount(Resource.GLASS) < cost[2])
+            gameManager.GetResourceCount(Resource.PLANKS) < cost[2])
         {
             Debug.Log("Not enough resources to build house!");
             return;
@@ -50,7 +50,7 @@ public class HouseManager : MonoBehaviour
 
         gameManager.RemoveResource(Resource.BRICK, cost[0]);
         gameManager.RemoveResource(Resource.TILE, cost[1]);
-        gameManager.RemoveResource(Resource.GLASS, cost[2]);
+        gameManager.RemoveResource(Resource.PLANKS, cost[2]);
         gameManager.AddResource(Resource.HOUSE, 1); 
     }
 }

@@ -1708,7 +1708,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 891704993983032679, guid: 2760da9f550c02e4480b4b992d6c8748, type: 3}
       propertyPath: m_Name
-      value: SandMine
+      value: WoodCutter
       objectReference: {fileID: 0}
     - target: {fileID: 3319062436162208223, guid: 2760da9f550c02e4480b4b992d6c8748, type: 3}
       propertyPath: resource
@@ -1963,7 +1963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5101894592932716088, guid: 33abb00a5a886954698312f903f951f9, type: 3}
       propertyPath: m_Name
-      value: GlassBlower
+      value: Woodery
       objectReference: {fileID: 0}
     - target: {fileID: 6385844933959367090, guid: 33abb00a5a886954698312f903f951f9, type: 3}
       propertyPath: baseOutput
@@ -2337,13 +2337,13 @@ MonoBehaviour:
     description: 'This is big building '
     brickCost: 200
     tileCost: 1000
-    glassCost: 100
+    plankCost: 0
     worldObject: {fileID: 149471774}
   - name: Test Monument 2
     description: 'This is big building '
     brickCost: 100
     tileCost: 200
-    glassCost: 100
+    plankCost: 0
     worldObject: {fileID: 1883187468}
   nextUnlockLabel: {fileID: 406856357}
 --- !u!4 &1441277718

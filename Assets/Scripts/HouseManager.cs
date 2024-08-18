@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HouseManager : MonoBehaviour
 {
+    [SerializeField]
     private float ttnw = 30; //Time to next worker
     private float currentTtnw = 0;
     private int workerPerHouse = 3;
@@ -23,9 +24,12 @@ public class HouseManager : MonoBehaviour
         } else
         {
             currentTtnw = ttnw;
-            if (gameManager.GetResource(Resource.WORKER) < gameManager.GetResource(Resource.HOUSE) * workerPerHouse)
+            if (gameManager.GetResource(Resource.TOTAL_WORKER) < gameManager.GetResource(Resource.HOUSE) * workerPerHouse)
             {
-                gameManager.AddResource(Resource.WORKER, 1);
+                int freeWorkerSlots = (gameManager.GetResource(Resource.HOUSE) * workerPerHouse) - gameManager.GetResource(Resource.TOTAL_WORKER);
+                int newWorkers = Mathf.CeilToInt((float)freeWorkerSlots / workerPerHouse);
+                gameManager.AddResource(Resource.WORKER, newWorkers);
+                gameManager.AddResource(Resource.TOTAL_WORKER, newWorkers);
             }
         }
     }

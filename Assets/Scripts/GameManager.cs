@@ -12,11 +12,11 @@ public enum Resource
     TILE,
     GLASS,
     HOUSE,
-    WORKER
+    WORKER,
+    TOTAL_WORKER
 }
 public class GameManager : MonoBehaviour
 {
-
     private Dictionary<Resource, int> resources = new Dictionary<Resource, int>()
     {
         { Resource.ROCK, 0 },
@@ -25,8 +25,9 @@ public class GameManager : MonoBehaviour
         { Resource.BRICK, 0 },
         { Resource.TILE, 0 },
         { Resource.GLASS, 0 },
-        { Resource.HOUSE, 0 },
-        { Resource.WORKER, 0 }
+        { Resource.HOUSE, 1 },
+        { Resource.WORKER, 0 },
+        { Resource.TOTAL_WORKER, 0 },
     };
 
 

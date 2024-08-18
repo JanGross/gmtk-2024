@@ -53,13 +53,14 @@ public class Facility : MonoBehaviour
         if(currentProcess > 0)
         {
             currentProcess -= Time.deltaTime;
-            currentProgressLabel.text = currentProcess.ToString();
+            currentProgressLabel.text = currentProcess.ToString("N1");
         }
 
         if (currentProcess <= 0){
             currentProcess = processingTime;
             processing = false;
             gameManager.AddResource(outputResource, currentProductionBatch * baseOutput);
+            currentProgressLabel.text = "Idle";
         }
     }
 

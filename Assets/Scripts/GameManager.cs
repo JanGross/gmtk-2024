@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         { Resource.BRICK, 0 },
         { Resource.TILE, 0 },
         { Resource.GLASS, 0 },
-        { Resource.HOUSE, 1 },
+        { Resource.HOUSE, 0 },
         { Resource.WORKER, 0 },
         { Resource.TOTAL_WORKER, 0 }
     };
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         }
 
         housingLabel.text = $"{resources[Resource.HOUSE]} Houses\n" +
-                            $"{resources[Resource.WORKER]} Workers";
+                            $"{resources[Resource.WORKER]}/{resources[Resource.TOTAL_WORKER]} Workers";
         resourceLabel.text = $"Resources:\n" +
             $"Storage: Bricks {resources[Resource.BRICK]} | Tiles {resources[Resource.TILE]} | Glass {resources[Resource.GLASS]}\n" +
             $"Comitted: Bricks {committedResources[Resource.BRICK]} | Tiles {committedResources[Resource.TILE]} | Glass {committedResources[Resource.GLASS]}";

@@ -61,7 +61,7 @@ public class MonumentManager : MonoBehaviour
 
         if (lastMonumentIndex == monuments.Count-1)
         {
-            Debug.Log("All unlocked");
+            nextUnlockLabel.text = "Everything has been unlocked!";
             return;
         }
 

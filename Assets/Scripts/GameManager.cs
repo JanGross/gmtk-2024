@@ -17,6 +17,8 @@ public enum Resource
 }
 public class GameManager : MonoBehaviour
 {
+    private int currentView = 0;
+
     private Dictionary<Resource, int> resources = new Dictionary<Resource, int>()
     {
         { Resource.ROCK, 0 },
@@ -32,10 +34,16 @@ public class GameManager : MonoBehaviour
 
 
     public TMPro.TMP_Text debugText;
+
+    [SerializeField]
+    GameObject mainViewBtn, mapViewBtn;
+
+    [SerializeField]
+    private Transform mainCameraPos, worldMapCameraPos;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Camera.main.transform.position = mainCameraPos.position;
     }
 
     // Update is called once per frame
@@ -58,9 +66,27 @@ public class GameManager : MonoBehaviour
         resources[res] -= amt;
     }
 
-    public int GetResource(Resource res)
+    public int GetResourceCount(Resource res)
     {
         return resources[res];
     }
 
+    public void SetView(int view)
+    {
+        switch (view)
+        {
+            case 0: //Main view
+                Camera.main.transform.position = mainCameraPos.position;
+                mainViewBtn.SetActive(true);
+                mapViewBtn.SetActive(false);
+                break;
+            case 1: //Map View
+                Camera.main.transform.position = worldMapCameraPos.position;
+                mainViewBtn.SetActive(false);
+                mapViewBtn.SetActive(true);
+                break;
+            default:
+                break;
+        }
+    }
 }

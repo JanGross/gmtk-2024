@@ -20,7 +20,7 @@ public class AssignableWorker : MonoBehaviour
 
     public void AddWorker()
     {
-        if(gameManager.GetResource(Resource.WORKER) > 0)
+        if(gameManager.GetResourceCount(Resource.WORKER) > 0)
         {
             workersAssigned++;
             gameManager.RemoveResource(Resource.WORKER, 1);

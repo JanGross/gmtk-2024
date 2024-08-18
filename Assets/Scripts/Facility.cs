@@ -69,6 +69,7 @@ public class Facility : MonoBehaviour
 
         if (gameManager.GetResourceCount(inputResource) < materialConsumption) return; //Not enough material
 
+        currentProductionBatch = 1;
         gameManager.RemoveResource(inputResource, materialConsumption);
         currentProcess = processingTime;
         processing = true;

@@ -36,11 +36,11 @@ public class Facility : MonoBehaviour
 
         if (!processing) //Not processing but workers assigned, start new job if material is available
         {
-            if (gameManager.GetResource(inputResource) < materialConsumption) return; //Not enough material
+            if (gameManager.GetResourceCount(inputResource) < materialConsumption) return; //Not enough material
 
             //Consumtion 5, 2
             int workerCount = (assignableWorker.GetAssignedWorkers() == 0 ? 1 : assignableWorker.GetAssignedWorkers());
-            int maxPossibleBatch = gameManager.GetResource(inputResource) / materialConsumption;
+            int maxPossibleBatch = gameManager.GetResourceCount(inputResource) / materialConsumption;
             currentProductionBatch = Mathf.Min(maxPossibleBatch, workerCount);
             
             int requiredRessources = currentProductionBatch * materialConsumption;
@@ -67,7 +67,7 @@ public class Facility : MonoBehaviour
     {
         if (processing) return; //Already processing
 
-        if (gameManager.GetResource(inputResource) < materialConsumption) return; //Not enough material
+        if (gameManager.GetResourceCount(inputResource) < materialConsumption) return; //Not enough material
 
         gameManager.RemoveResource(inputResource, materialConsumption);
         currentProcess = processingTime;

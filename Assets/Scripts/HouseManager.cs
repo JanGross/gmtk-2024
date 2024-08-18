@@ -24,9 +24,9 @@ public class HouseManager : MonoBehaviour
         } else
         {
             currentTtnw = ttnw;
-            if (gameManager.GetResource(Resource.TOTAL_WORKER) < gameManager.GetResource(Resource.HOUSE) * workerPerHouse)
+            if (gameManager.GetResourceCount(Resource.TOTAL_WORKER) < gameManager.GetResourceCount(Resource.HOUSE) * workerPerHouse)
             {
-                int freeWorkerSlots = (gameManager.GetResource(Resource.HOUSE) * workerPerHouse) - gameManager.GetResource(Resource.TOTAL_WORKER);
+                int freeWorkerSlots = (gameManager.GetResourceCount(Resource.HOUSE) * workerPerHouse) - gameManager.GetResourceCount(Resource.TOTAL_WORKER);
                 int newWorkers = Mathf.CeilToInt((float)freeWorkerSlots / workerPerHouse);
                 gameManager.AddResource(Resource.WORKER, newWorkers);
                 gameManager.AddResource(Resource.TOTAL_WORKER, newWorkers);
@@ -36,9 +36,9 @@ public class HouseManager : MonoBehaviour
 
     public void BuildHouse()
     {
-        if (gameManager.GetResource(Resource.BRICK) < 10 ||
-            gameManager.GetResource(Resource.TILE) < 5 ||
-            gameManager.GetResource(Resource.GLASS) < 2)
+        if (gameManager.GetResourceCount(Resource.BRICK) < 10 ||
+            gameManager.GetResourceCount(Resource.TILE) < 5 ||
+            gameManager.GetResourceCount(Resource.GLASS) < 2)
         {
             Debug.Log("Not enough resources to build house!");
             return;

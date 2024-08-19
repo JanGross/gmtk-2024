@@ -10,6 +10,7 @@ public class Monument
     public string description;
     public int brickCost, tileCost, plankCost;
     public GameObject worldObject;
+    public GameObject cover;
 }
 public class MonumentManager : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class MonumentManager : MonoBehaviour
                 availableResources[Resource.TILE] -= monument.tileCost;
                 availableResources[Resource.PLANKS] -= monument.plankCost;
                 monument.worldObject.GetComponent<Renderer>().material.color = Color.green;
+                Destroy(monument.cover);
                 lastMonumentIndex = i;
             } else
             {

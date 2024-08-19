@@ -23,6 +23,7 @@ public class Mine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        storedLabel.text = gameManager.GetResourceCount(resource).ToString();
         nextTick -= Time.deltaTime;
         if (nextTick <= 0f)
         {
@@ -32,8 +33,7 @@ public class Mine : MonoBehaviour
     }
 
     private void Tick()
-    {
-        storedLabel.text = gameManager.GetResourceCount(resource).ToString();
+    {        
         gameManager.AddResource(resource, 1 * assignableWorker.GetAssignedWorkers());
     }
 

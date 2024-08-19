@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HouseManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class HouseManager : MonoBehaviour
     public int[] cost = new int[3] { 10, 5, 2 };
     [SerializeField]
     private Transform notificationOrigin;
+    [SerializeField]
+    private TMP_Text houseReqLabel;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,9 @@ public class HouseManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        houseReqLabel.text = $"{gameManager.GetResourceCount(Resource.BRICK)}/{cost[0]} Bricks\n" +
+                             $"{gameManager.GetResourceCount(Resource.TILE)}/{cost[1]} Tiles\n" +
+                             $"{gameManager.GetResourceCount(Resource.PLANKS)}/{cost[2]} Planks\n";
         if (currentTtnw > 0)
         {
             currentTtnw -= Time.deltaTime;

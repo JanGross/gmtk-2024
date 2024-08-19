@@ -9,10 +9,12 @@ public class HouseManager : MonoBehaviour
     private float currentTtnw = 0;
     private int workerPerHouse = 3;
     private GameManager gameManager;
-
+    [SerializeField]
+    private GameObject mouseNotificationLabel;
     //House cost: Brick Tile Plank
     public int[] cost = new int[3] { 10, 5, 2 };
-
+    [SerializeField]
+    private Transform notificationOrigin;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,11 @@ public class HouseManager : MonoBehaviour
                 int newWorkers = Mathf.CeilToInt((float)freeWorkerSlots / workerPerHouse);
                 gameManager.AddResource(Resource.WORKER, newWorkers);
                 gameManager.AddResource(Resource.TOTAL_WORKER, newWorkers);
+
+                GameObject infoLabel = Instantiate(mouseNotificationLabel, notificationOrigin.transform.position, Quaternion.identity, GameObject.Find("Canvas").transform);
+                infoLabel.GetComponent<MousePosLabel>().tmp.text = $"{newWorkers} worker{(newWorkers > 1 ? "s" : "")} moved in";
+                infoLabel.transform.position = notificationOrigin.transform.position;
+                infoLabel.GetComponent <MousePosLabel>().direction = new Vector3(0, -2, 0);
             }
         }
     }
@@ -45,6 +52,9 @@ public class HouseManager : MonoBehaviour
             gameManager.GetResourceCount(Resource.PLANKS) < cost[2])
         {
             Debug.Log("Not enough resources to build house!");
+            GameObject infoLabel = Instantiate(mouseNotificationLabel, GameObject.Find("Canvas").transform);
+            infoLabel.GetComponent<MousePosLabel>().tmp.text = "Not enough resources to build house!";
+            infoLabel.GetComponent<MousePosLabel>().direction = new Vector3(0, 4, 0);
             return;
         }
 

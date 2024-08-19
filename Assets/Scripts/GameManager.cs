@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
@@ -58,17 +59,46 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject mapViewBtn;
 
+    [SerializeField]
+    private Transform targetCameraPos;
     private MonumentManager monumentManager;
+    [SerializeField]
+    private float cameraSpeed = 5;
+    
+    [SerializeField]
+    private GameObject quitPanel, transitionPanel;
+    [SerializeField]
+    private float transitionTime = 1f;
+    private float transitionCounter = 0;
+
     // Start is called before the first frame update
     void Start()
     {
+        transitionPanel.SetActive(true);
         Camera.main.transform.position = mainCameraPos.position;
+        targetCameraPos = mainCameraPos;
         monumentManager = GameObject.Find("MonumentManager").GetComponent<MonumentManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            quitPanel.SetActive(!quitPanel.activeSelf);
+        }
+
+        if(transitionCounter <= transitionTime)
+        {
+            transitionCounter += Time.deltaTime;
+            Color c = transitionPanel.GetComponent<Image>().color;
+            c.a = Mathf.Lerp(1f, 0f, transitionCounter / transitionTime);
+            transitionPanel.GetComponent<Image>().color = c;
+            if(transitionCounter > transitionTime) { Destroy(transitionPanel); }
+        }
+
+        float effectiveCamSpeed = Vector3.Distance(Camera.main.transform.position, targetCameraPos.position) * cameraSpeed * Time.deltaTime;
+        Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, targetCameraPos.position, effectiveCamSpeed);
         debugText.text = "";
         foreach (var item in resources)
         {
@@ -119,13 +149,13 @@ public class GameManager : MonoBehaviour
         switch (view)
         {
             case 0: //Main view
-                Camera.main.transform.position = mainCameraPos.position;
+                targetCameraPos = mainCameraPos;
                 mainViewBtn.SetActive(false);
                 mapViewBtn.SetActive(true);
                 commitBtn.SetActive(false);
                 break;
             case 1: //Map View
-                Camera.main.transform.position = worldMapCameraPos.position;
+                targetCameraPos = worldMapCameraPos;
                 mainViewBtn.SetActive(true);
                 mapViewBtn.SetActive(false);
                 commitBtn.SetActive(true);
@@ -133,5 +163,10 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

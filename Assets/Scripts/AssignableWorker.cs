@@ -5,11 +5,14 @@ using UnityEngine;
 public class AssignableWorker : MonoBehaviour
 {
     private int workersAssigned = 0;
-
+    private TogglePurchaseAmount purchaseAmount;
     private GameManager gameManager;
+    private int workerAmount = 0;
+    
     // Start is called before the first frame update
     void Start()
     {
+        purchaseAmount = GameObject.Find("PurchaseMultiplier").GetComponent<TogglePurchaseAmount>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
@@ -20,18 +23,23 @@ public class AssignableWorker : MonoBehaviour
 
     public void AddWorker()
     {
-        if(gameManager.GetResourceCount(Resource.WORKER) > 0)
+        workerAmount = purchaseAmount.GetPurchaseAmount();
+        
+        if(gameManager.GetResourceCount(Resource.WORKER) >= workerAmount)
         {
-            workersAssigned++;
-            gameManager.RemoveResource(Resource.WORKER, 1);
+            workersAssigned += workerAmount;
+            gameManager.RemoveResource(Resource.WORKER, workerAmount);
         }
+        
+        
     }
 
     public bool RemoveWorker()
     {
-        if (workersAssigned == 0) return false;
-        workersAssigned--;
-        gameManager.AddResource(Resource.WORKER, 1);
+        workerAmount = purchaseAmount.GetPurchaseAmount();
+        if (workersAssigned < workerAmount) return false;
+        workersAssigned -= workerAmount;
+        gameManager.AddResource(Resource.WORKER, workerAmount);
         return true;
     }
 }

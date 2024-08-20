@@ -15,8 +15,7 @@ public class HouseManager : MonoBehaviour
     [SerializeField]
     private GameObject mouseNotificationLabel;
     //House cost: Brick Tile Plank
-    // public int[] cost = new int[3] { 10, 5, 2 };
-    public int[] cost = new int[3] { 2, 1, 1 };
+    public int[] cost = new int[3] { 10, 5, 2 };
     [SerializeField]
     private Transform notificationOrigin;
     [SerializeField] 

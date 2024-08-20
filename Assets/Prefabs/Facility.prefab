@@ -398,6 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde21470ef329a94caf3c31d0d3ff253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseNotificationLabel: {fileID: 71488340529515895, guid: 2bd387484a077f34cbd512af8b72e8e5, type: 3}
 --- !u!1 &6006781915246697612
 GameObject:
   m_ObjectHideFlags: 0

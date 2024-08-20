@@ -8,7 +8,10 @@ public class AssignableWorker : MonoBehaviour
     private TogglePurchaseAmount purchaseAmount;
     private GameManager gameManager;
     private int workerAmount = 0;
-    
+
+    [SerializeField]
+    private GameObject mouseNotificationLabel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,11 @@ public class AssignableWorker : MonoBehaviour
         {
             workersAssigned += workerAmount;
             gameManager.RemoveResource(Resource.WORKER, workerAmount);
+        } else
+        {
+            GameObject infoLabel = Instantiate(mouseNotificationLabel, GameObject.Find("Canvas").transform);
+            infoLabel.GetComponent<MousePosLabel>().tmp.text = "No worker available!";
+            infoLabel.GetComponent<MousePosLabel>().direction = new Vector3(0, 4, 0);
         }
         
         

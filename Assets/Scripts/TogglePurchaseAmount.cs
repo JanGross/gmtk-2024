@@ -38,7 +38,7 @@ public class TogglePurchaseAmount : MonoBehaviour
 
     private void UpdateDisplayAmount()
     {
-        displayThing.text = "Toggle Purchase Amount x " + purchaseAmount.ToString();
+        displayThing.text = "Toggle Buy/Worker Amount x " + purchaseAmount.ToString();
     }
 
     public int GetPurchaseAmount()
